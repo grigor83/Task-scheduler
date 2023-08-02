@@ -137,6 +137,8 @@ public abstract class MyTask implements Runnable, Serializable, Comparable<MyTas
 	}
 	
 	protected void updateProgress() {
+		if (tableModel == null)
+			return;
     	progress = ((int) (i*(100f/total)));
 		tableModel.updateProgress(row, progress);
 	}

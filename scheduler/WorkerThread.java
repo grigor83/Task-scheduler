@@ -50,7 +50,8 @@ public class WorkerThread extends Thread implements Serializable {
             		synchronized (completedTerminatedTasks) {
 						completedTerminatedTasks.offer(task);
 					}
-            		task.getTableModel().fireTableDataChanged();
+            		if (task.getTableModel() != null)
+            			task.getTableModel().fireTableDataChanged();
             	}
             	synchronized (taskLock) {
                 	task=null;

@@ -9,8 +9,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class HistogramEqualizationTask extends MyTask {
-	public final static String GRAY_FILE="grayImage.jpeg", SHARPENED_FILE="sharpened_image.jpeg", COMBINED_FILE="combined_image.jpeg";
 	public final static int MAX_GREY_LEVEL = 256;
+	private final static String GRAY_FILE="grayImage.jpeg", SHARPENED_FILE="sharpened_image.jpeg";
 	private String imageName;
 	
 	public HistogramEqualizationTask(String name) {

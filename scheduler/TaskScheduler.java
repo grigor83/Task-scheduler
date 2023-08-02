@@ -191,7 +191,8 @@ public class TaskScheduler implements Serializable {
 					synchronized (completedTerminatedTasks) {
 						completedTerminatedTasks.offer(task);
 					}
-					task.getTableModel().fireTableDataChanged();
+					if (task.getTableModel() != null)
+						task.getTableModel().fireTableDataChanged();
 					return true;
 				}
 			}

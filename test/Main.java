@@ -1,7 +1,10 @@
 package test;
 
 import scheduler.*;
-import tasks.Task;
+import tasks.*;
+
+import java.io.File;
+import java.util.LinkedList;
 
 import javax.swing.SwingUtilities;
 
@@ -11,9 +14,9 @@ public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		//testWithoutGUI();
+		testWithoutGUI();
 		
-		testWithGUI();
+		//testWithGUI();
 	}
 	
 	private static void testWithGUI() {
@@ -30,8 +33,8 @@ public class Main {
 		TaskScheduler scheduler = new TaskScheduler(15, true);
 				
 		// First string is name of the task, second string is the starting time and third is the end time when task should be completed or terminated.
-		Task t1 = new Task("task 1", "26-07-2023 21:22:25", "26-07-2023 21:22:27"), t2 = new Task("task 2"), t3 = new Task("task 3");
-		Task t4 = new Task("task 4", 5), t5 = new Task("task 5", 2, 3);
+		MyTask t1 = new Task("task 1", "26-07-2023 21:22:25", "26-07-2023 21:22:27"), t2 = new Task("task 2"), t3 = new Task("task 3");
+		MyTask t4 = new Task("task 4", 5), t5 = new Task("task 5", 2, 3);
 		
 		scheduler.addTask(t1, false); scheduler.addTask(t2, false); scheduler.addTask(t3, true); // true for start immediately
 		scheduler.addTask(t4, true); scheduler.addTask(t5, true);
@@ -46,6 +49,14 @@ public class Main {
 		scheduler.stopTask("task 3");
 		Thread.sleep(30_000);
 		scheduler.startTask("task 4");
+		
+		// Create histogram task
+		LinkedList<File> images = new LinkedList<>();
+		images.add(new File("1.jpeg")); images.add(new File("2.png")); images.add(new File("3.jfif")); images.add(new File("4.jfif"));
+		images.add(new File("5.jfif"));
+		MyTask histogramTask = new HistogramEqualizationTask("histogram task 7");
+		scheduler.copyFiles(histogramTask, images);
+		scheduler.addTask(histogramTask, true);
 		
 		Thread.sleep(30_000);
 		scheduler.shutDown();
