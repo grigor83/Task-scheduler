@@ -19,7 +19,8 @@ import tasks.MyTask;
 
 public class TaskScheduler implements Serializable {
 	public final static int MAX_THREADS = 10;
-	public final static File ROOT_DIR = new File("C:/Users/Igor/Desktop/TASK_SCHEDULER"),
+	public final static File ROOT_DIR = new File(""),
+							ROOT_DIR = new File(USER_DIR + File.separator + "TASK_SCHEDULER"),
 							INPUT_DIR = new File (ROOT_DIR + File.separator + "input"),
 							OUTPUT_DIR = new File (ROOT_DIR + File.separator + "output"),
 							SCHEDULER_FILE = new File (ROOT_DIR + File.separator + "scheduler.bin");
